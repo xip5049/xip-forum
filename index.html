@@ -136,7 +136,7 @@ input,textarea,select{font-family:inherit;font-size:14px;outline:none}
 
 <div id="app"></div>
 
-<footer class="foot"><b>XIP GROUP</b> &copy; 2026 · 自由讨论社区</footer>
+<footer class="foot"><b>XIP GROUP</b> &copy; 2026 · 自由讨论社区 · v10.2 Disqus</footer>
 <div class="toast" id="toast"></div>
 
 <!-- Disqus 评论系统（全球最常用的免费评论，邮箱注册即可） -->
@@ -161,27 +161,25 @@ function esc(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').
 function ago(t){if(!t)return'';const d=Date.now()-t;if(d<6e4)return'刚刚';if(d<36e5)return Math.floor(d/6e4)+'分钟前';if(d<864e5)return Math.floor(d/36e5)+'小时前';return Math.floor(d/864e5)+'天前'}
 function toast(m){const t=document.getElementById('toast');t.textContent=m;t.classList.add('show');clearTimeout(t._t);t._t=setTimeout(()=>t.classList.remove('show'),1800)}
 
-// ====== Giscus 评论配置（已配置好） ======
-function initGiscus(path) {
-  const box = document.getElementById('giscus-box');
+// ====== Disqus 评论（已配置，支持匿名访客评论） ======
+const DISQUS_SHORTNAME = 'xip-forum'; // ← 注册后填你的 shortname
+function initDisqus(path) {
+  const box = document.getElementById('disqus-box');
   if (!box) return;
-  box.innerHTML = '';
-  const s = document.createElement('script');
-  s.src = 'https://giscus.app/client.js';
-  s.setAttribute('data-repo', 'XIP5049/xip-forum');
-  s.setAttribute('data-repo-id', 'R_kgDOVcvYrQ');
-  s.setAttribute('data-category', 'General');
-  s.setAttribute('data-category-id', 'DIC_kwDOVcvYrc4DJ-1q');
-  s.setAttribute('data-mapping', 'pathname');
-  s.setAttribute('data-strict', '0');
-  s.setAttribute('data-reactions-enabled', '1');
-  s.setAttribute('data-emit-metadata', '0');
-  s.setAttribute('data-input-position', 'bottom');
-  s.setAttribute('data-theme', 'dark');
-  s.setAttribute('data-lang', 'zh-CN');
-  s.crossOrigin = 'anonymous';
-  s.async = true;
-  box.appendChild(s);
+  box.innerHTML = '<div id="disqus_thread"></div>';
+  window.disqus_config = function () {
+    this.page.url = location.origin + location.pathname + '#/post/' + path;
+    this.page.identifier = 'post-' + path;
+  };
+  if (!window.DISQUS) {
+    var s = document.createElement('script');
+    s.src = 'https://' + DISQUS_SHORTNAME + '.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    s.async = true;
+    document.body.appendChild(s);
+  } else {
+    DISQUS.reset({ reload: true, config: window.disqus_config });
+  }
 }
 
 // ====== 路由 ======
@@ -199,7 +197,7 @@ function render(){
   else app.innerHTML=home();
 
   window.scrollTo(0,0);
-  if(v==='post')initGiscus(p[1]);
+  if(v==='post')initDisqus(p[1]);
 }
 
 function home(){
@@ -234,7 +232,7 @@ function home(){
     <div class="notice">
       <span class="notice-tag">公告</span>
       <h3>论坛已开放，欢迎自由发帖</h3>
-      <p>选一个板块，点右上角「发新帖」，输入昵称、标题、正文就能发。评论区用 Giscus，用 GitHub 账号登录即可回复，所有设备同步。</p>
+      <p>选一个板块，点右上角「发新帖」，输入昵称、标题、正文就能发。评论区用 Disqus，填名字邮箱即可回复，所有设备同步。</p>
     </div>
     <div class="box">
       <div class="box-h"><h2>板块导航</h2></div>
@@ -291,7 +289,7 @@ function post(pid){
     </div>
     <div class="cbox">
       <h3>评论讨论区</h3>
-      <div id="giscus-box"></div>
+      <div id="disqus-box"></div>
     </div>
   </div>`;
 }
