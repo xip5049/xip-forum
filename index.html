@@ -4,289 +4,206 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>XIP GROUP 论坛</title>
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='14' fill='%230a0a0a'/%3E%3Ctext x='50' y='72' font-size='58' text-anchor='middle' fill='%23c9a961' font-family='sans-serif' font-weight='900'%3EX%3C/text%3E%3C/svg%3E">
-<link rel="stylesheet" href="https://miaoda.feishu.cn/fonts/css2?family=JetBrains+Mono:wght@400;600;700&display=swap">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%230a0a0a'/><text x='50' y='70' font-size='55' text-anchor='middle' fill='%23c9a961' font-family='sans-serif' font-weight='900'>X</text></svg>">
 <style>
-/* ===== 基础 ===== */
 *{margin:0;padding:0;box-sizing:border-box}
 :root{
-  --bg:#0a0a0c;--bg2:#111114;--bg3:#17171c;
-  --line:#222228;--line2:#33333c;
-  --text:#e9e9ec;--t2:#9c9ca6;--t3:#63636d;
-  --gold:#c9a961;--gold2:#d9b970;--gold-dim:rgba(201,169,97,.08);
-  --mono:"JetBrains Mono",Consolas,monospace;
+  --bg:#0c0c0e;--bg2:#141417;--bg3:#1c1c21;
+  --line:#26262c;--line2:#383840;
+  --text:#e8e8ea;--t2:#9a9aa3;--t3:#66666f;
+  --gold:#c9a961;--gold2:#e0c084;
 }
 html{scroll-behavior:smooth}
-body{background:var(--bg);color:var(--text);
-  font-family:"PingFang SC","Microsoft YaHei","Helvetica Neue",sans-serif;
-  font-size:14px;line-height:1.65;-webkit-font-smoothing:antialiased;
-  min-height:100vh;display:flex;flex-direction:column}
+body{background:var(--bg);color:var(--text);font-family:"PingFang SC","Microsoft YaHei","Helvetica Neue",sans-serif;font-size:14px;line-height:1.6;-webkit-font-smoothing:antialiased}
 a{color:inherit;text-decoration:none;transition:color .15s}
 button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
-input,textarea,select{font-family:inherit;font-size:16px;outline:none}
-::selection{background:var(--gold);color:#0a0a0a}
+input,textarea,select{font-family:inherit;font-size:14px;outline:none}
 
-/* ===== 顶栏 ===== */
-.top{position:sticky;top:0;z-index:100;background:rgba(10,10,12,.92);
-  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
-  border-bottom:1px solid var(--line)}
-.top-in{max-width:1000px;margin:0 auto;padding:0 16px;height:56px;
-  display:flex;align-items:center;gap:14px}
-.logo{font-size:16px;font-weight:900;letter-spacing:2px;color:var(--gold);white-space:nowrap}
+.top{position:sticky;top:0;z-index:100;background:rgba(12,12,14,.94);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.top-in{max-width:1000px;margin:0 auto;padding:0 20px;height:54px;display:flex;align-items:center;gap:20px}
+.logo{font-size:15px;font-weight:900;letter-spacing:2px;color:var(--gold);white-space:nowrap}
 .logo em{font-style:normal;color:var(--t2);font-weight:300;margin-left:6px;font-size:10px;letter-spacing:3px}
 .nav{display:flex;gap:2px}
-.nav a{padding:7px 12px;font-size:12.5px;color:var(--t2);border-radius:6px;transition:all .15s;min-height:44px;display:flex;align-items:center}
+.nav a{padding:6px 12px;font-size:12px;color:var(--t2);border-radius:4px;transition:all .15s}
 .nav a:hover{color:var(--text);background:var(--bg3)}
-.nav a.on{color:var(--gold);background:var(--gold-dim)}
+.nav a.on{color:var(--gold);background:rgba(201,169,97,.1)}
 .right{margin-left:auto;display:flex;gap:8px;align-items:center}
-.btn{padding:9px 18px;font-size:12.5px;font-weight:600;letter-spacing:1px;
-  border:1px solid var(--gold);color:var(--gold);border-radius:6px;
-  transition:all .18s;min-height:44px;display:inline-flex;align-items:center;justify-content:center}
+.btn{padding:7px 16px;font-size:12px;font-weight:600;letter-spacing:1px;border:1px solid var(--gold);color:var(--gold);border-radius:4px;transition:all .15s}
 .btn:hover{background:var(--gold);color:var(--bg)}
 .btn-s{background:var(--gold);color:var(--bg)}
 .btn-s:hover{background:var(--gold2)}
 .btn-g{border-color:var(--line2);color:var(--t2)}
-.btn-g:hover{border-color:var(--text);color:var(--text)}
-@media(max-width:640px){.nav{display:none}.top-in{padding:0 12px;height:52px}}
+.btn-g:hover{border-color:var(--text);color:var(--text);background:transparent}
 
-/* ===== Hero ===== */
-.welcome{background:
-  radial-gradient(ellipse 70% 60% at 50% 0%,rgba(201,169,97,.08),transparent 70%),
-  linear-gradient(180deg,var(--bg2),var(--bg));
-  border-bottom:1px solid var(--line);padding:44px 20px 34px}
-.welcome-in{max-width:1000px;margin:0 auto;text-align:center}
-.welcome h1{font-size:clamp(24px,5vw,32px);font-weight:800;letter-spacing:1px}
+.welcome{background:linear-gradient(135deg,rgba(201,169,97,.07),transparent 60%),var(--bg2);border-bottom:1px solid var(--line);padding:36px 20px;animation:fadeDown .5s ease}
+.welcome-in{max-width:1000px;margin:0 auto}
+.welcome h1{font-size:24px;font-weight:800;letter-spacing:1px}
 .welcome h1 span{color:var(--gold)}
-.welcome p{font-size:13.5px;color:var(--t2);margin-top:8px}
-.wstats{display:flex;justify-content:center;gap:10px;margin-top:22px;flex-wrap:wrap}
-.wstat{min-width:96px;padding:10px 16px;border:1px solid var(--line);border-radius:10px;background:var(--bg)}
-.wstat b{display:block;font-family:var(--mono);font-size:20px;font-weight:700;color:var(--gold)}
-.wstat span{font-size:11px;color:var(--t3);letter-spacing:1px}
+.welcome p{font-size:13px;color:var(--t2);margin-top:6px}
 
-/* ===== 布局 ===== */
-.wrap{max-width:1000px;margin:0 auto;padding:0 16px;flex:1;width:100%}
+.wrap{max-width:1000px;margin:20px auto;padding:0 20px}
 
-/* ===== 公告 / 注册提示 ===== */
-.notice{background:var(--bg2);border:1px solid var(--gold);border-radius:10px;
-  padding:16px 20px;margin:18px 0;animation:fadeUp .4s ease}
-.notice-tag{display:inline-block;font-size:10px;padding:3px 10px;background:var(--gold);
-  color:var(--bg);font-weight:700;letter-spacing:1px;margin-bottom:8px;border-radius:4px}
+.notice{background:var(--bg2);border:1px solid var(--gold);border-radius:4px;padding:18px 22px;margin-bottom:20px;animation:fadeUp .4s ease}
+.notice-tag{display:inline-block;font-size:10px;padding:2px 8px;background:var(--gold);color:var(--bg);font-weight:700;letter-spacing:1px;margin-bottom:8px;border-radius:2px}
 .notice h3{font-size:15px;margin-bottom:6px}
 .notice p{font-size:13px;color:var(--t2);line-height:1.8}
-.notice p b{color:var(--gold);font-weight:600}
 
-/* ===== 通用卡片 ===== */
-.box{background:var(--bg2);border:1px solid var(--line);border-radius:10px;
-  margin-bottom:16px;overflow:hidden;animation:fadeUp .4s ease both}
-.box-h{padding:12px 18px;background:var(--bg3);border-bottom:1px solid var(--line);
-  display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
-.box-h h2{font-size:13px;font-weight:700;letter-spacing:2px;display:flex;align-items:center;min-height:44px}
-.box-h h2::before{content:"";width:3px;height:14px;background:var(--gold);margin-right:9px;border-radius:2px}
-.box-h .more{font-size:11px;color:var(--t3);min-height:44px;display:flex;align-items:center}
-.box-h .more:hover{color:var(--gold)}
+.box{background:var(--bg2);border:1px solid var(--line);border-radius:4px;margin-bottom:16px;overflow:hidden;animation:fadeUp .4s ease both}
+.box:nth-child(2){animation-delay:.05s}
+.box-h{padding:11px 18px;background:var(--bg3);border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between}
+.box-h h2{font-size:13px;font-weight:700;letter-spacing:2px}
+.box-h h2::before{content:"";display:inline-block;width:3px;height:13px;background:var(--gold);margin-right:8px;vertical-align:-2px}
+.box-h .more{font-size:11px;color:var(--t3)}
 
-/* ===== 板块行 ===== */
-.srow{display:grid;grid-template-columns:44px 1fr;padding:13px 18px;border-bottom:1px solid var(--line);
-  align-items:center;gap:14px;cursor:pointer;transition:background .15s}
+.srow{display:grid;grid-template-columns:48px 1fr 80px 80px;padding:13px 18px;border-bottom:1px solid var(--line);align-items:center;gap:14px;cursor:pointer;transition:background .15s}
 .srow:last-child{border-bottom:none}
 .srow:hover{background:var(--bg3)}
-.srow:hover .sname{color:var(--gold)}
-.sicon{width:42px;height:42px;border-radius:8px;display:flex;align-items:center;justify-content:center;
-  font-size:15px;font-weight:800;color:var(--bg)}
-.sname{font-size:14.5px;font-weight:600;transition:color .15s}
-.sdesc{font-size:11.5px;color:var(--t3);margin-top:2px}
-.snum{display:none;text-align:center;font-size:11px;color:var(--t3)}
-.snum b{display:block;font-size:15px;color:var(--text);font-weight:700;font-family:var(--mono)}
-@media(min-width:700px){
-  .srow{grid-template-columns:44px 1fr 84px 84px}
-  .snum{display:block}
-}
+.srow:hover .sname{color:var(--gold);transform:translateX(3px)}
+.sicon{width:42px;height:42px;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:800;color:var(--bg)}
+.sname{font-size:14px;font-weight:600;transition:all .15s}
+.sdesc{font-size:11px;color:var(--t3);margin-top:2px}
+.snum{text-align:center;font-size:11px;color:var(--t3)}
+.snum b{display:block;font-size:15px;color:var(--text);font-weight:700}
 
-/* ===== 帖子行 ===== */
-.toolbar{display:flex;gap:8px;padding:12px 18px;border-bottom:1px solid var(--line);
-  flex-wrap:wrap;align-items:center}
-.search-box{flex:1;min-width:180px;position:relative}
-.search-box input{width:100%;background:var(--bg);border:1px solid var(--line);
-  color:var(--text);padding:10px 14px 10px 36px;border-radius:8px;font-size:14px;transition:border-color .2s}
-.search-box input:focus{border-color:var(--gold)}
-.search-box .ic{position:absolute;left:12px;top:50%;transform:translateY(-50%);width:15px;height:15px;color:var(--t3)}
-.seg{display:flex;border:1px solid var(--line);border-radius:8px;overflow:hidden}
-.seg button{padding:9px 16px;font-size:12.5px;color:var(--t3);transition:all .15s;min-height:44px}
-.seg button.on{background:var(--gold-dim);color:var(--gold);font-weight:600}
-.prow{display:grid;grid-template-columns:1fr 54px;padding:13px 18px;border-bottom:1px solid var(--line);
-  align-items:center;gap:12px;cursor:pointer;transition:background .12s;animation:fadeUp .3s ease both}
+.prow{display:grid;grid-template-columns:1fr 70px;padding:12px 18px;border-bottom:1px solid var(--line);align-items:center;gap:12px;cursor:pointer;transition:background .12s;animation:fadeUp .3s ease both}
 .prow:last-child{border-bottom:none}
 .prow:hover{background:var(--bg3)}
 .prow:hover .ptitle{color:var(--gold)}
-.ptitle{font-size:14px;font-weight:500;transition:color .12s;
-  overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.ptag{display:inline-block;font-size:10.5px;padding:2px 8px;margin-right:8px;
-  border:1px solid var(--line2);color:var(--t2);border-radius:4px;vertical-align:1px}
-.pmeta{font-size:11.5px;color:var(--t3);margin-top:4px}
+.ptitle{font-size:14px;font-weight:500;transition:color .12s;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ptag{display:inline-block;font-size:10px;padding:1px 6px;margin-right:6px;border:1px solid var(--line2);color:var(--t2);border-radius:2px}
+.pmeta{font-size:11px;color:var(--t3);margin-top:3px}
 .pmeta .author{color:var(--t2)}
 .pcnt{text-align:center;font-size:11px;color:var(--t3)}
-.pcnt b{display:block;font-size:15px;color:var(--text);font-family:var(--mono)}
+.pcnt b{display:block;font-size:15px;color:var(--text)}
 
-/* ===== 面包屑 ===== */
-.crumb{font-size:12px;color:var(--t3);margin:16px 0 12px}
+.crumb{font-size:12px;color:var(--t3);margin-bottom:14px}
 .crumb a:hover{color:var(--gold)}
-.crumb span{margin:0 6px;color:var(--t3)}
+.crumb span{margin:0 6px}
+.thread{background:var(--bg2);border:1px solid var(--line);border-radius:4px;overflow:hidden;margin-bottom:14px;animation:fadeUp .4s ease}
+.thread-h{padding:20px 24px;border-bottom:1px solid var(--line);background:var(--bg3)}
+.thread-tag{display:inline-block;font-size:10px;padding:2px 8px;border:1px solid var(--gold);color:var(--gold);border-radius:2px;letter-spacing:1px;margin-bottom:10px}
+.thread-h h1{font-size:19px;font-weight:700;line-height:1.4}
+.tmeta{margin-top:10px;font-size:11px;color:var(--t3);display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.av{width:24px;height:24px;border-radius:50%;background:var(--gold);color:var(--bg);display:inline-flex;align-items:center;justify-content:center;font-size:11px;font-weight:700}
+.thread-b{padding:22px 24px;font-size:14px;line-height:1.9;white-space:pre-wrap;word-break:break-word}
 
-/* ===== 帖子详情 ===== */
-.thread{background:var(--bg2);border:1px solid var(--line);border-radius:10px;
-  overflow:hidden;margin-bottom:14px;animation:fadeUp .4s ease}
-.thread-h{padding:20px 22px;border-bottom:1px solid var(--line);background:var(--bg3)}
-.thread-tag{display:inline-block;font-size:10.5px;padding:3px 10px;border:1px solid var(--gold);
-  color:var(--gold);border-radius:4px;letter-spacing:1px;margin-bottom:10px}
-.thread-h h1{font-size:19px;font-weight:700;line-height:1.45}
-.tmeta{margin-top:12px;font-size:12px;color:var(--t3);display:flex;gap:8px 16px;align-items:center;flex-wrap:wrap}
-.av{width:26px;height:26px;border-radius:50%;background:var(--gold);color:var(--bg);
-  display:inline-flex;align-items:center;justify-content:center;font-size:11px;font-weight:700}
-.tmeta .nm{color:var(--t2)}
-.thread-b{padding:22px;font-size:14px;line-height:1.9;white-space:pre-wrap;word-break:break-word}
-.thread-ops{display:flex;gap:8px;padding:0 22px 18px;flex-wrap:wrap}
-.op-btn{padding:8px 14px;font-size:12px;color:var(--t2);border:1px solid var(--line2);
-  border-radius:6px;transition:all .15s;min-height:44px;display:inline-flex;align-items:center;gap:6px}
-.op-btn:hover{color:var(--gold);border-color:var(--gold)}
-.op-btn svg{width:14px;height:14px}
+.cbox{background:var(--bg2);border:1px solid var(--line);border-radius:4px;padding:20px 24px;animation:fadeUp .4s ease .1s both}
+.cbox h3{font-size:13px;font-weight:700;letter-spacing:2px;padding-bottom:12px;border-bottom:1px solid var(--line);margin-bottom:14px}
+.cbox h3::before{content:"";display:inline-block;width:3px;height:12px;background:var(--gold);margin-right:8px;vertical-align:-2px}
 
-/* ===== 评论区（注册说明） ===== */
-.cbox{background:var(--bg2);border:1px solid var(--line);border-radius:10px;
-  padding:20px 22px;margin-bottom:20px;animation:fadeUp .4s ease .1s both}
-.cbox-h{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;
-  padding-bottom:12px;border-bottom:1px solid var(--line);margin-bottom:14px}
-.cbox h3{font-size:13px;font-weight:700;letter-spacing:2px;display:flex;align-items:center;min-height:44px}
-.cbox h3::before{content:"";width:3px;height:13px;background:var(--gold);margin-right:9px;border-radius:2px}
-.login-btn{padding:8px 16px;font-size:12px;font-weight:600;color:var(--gold);
-  border:1px solid var(--gold);border-radius:6px;transition:all .18s;min-height:44px;display:inline-flex;align-items:center;gap:7px}
-.login-btn:hover{background:var(--gold);color:var(--bg)}
-.login-btn svg{width:14px;height:14px}
-.auth-tip{display:flex;gap:12px;align-items:flex-start;padding:12px 14px;margin-bottom:16px;
-  background:var(--gold-dim);border:1px solid rgba(201,169,97,.35);border-radius:8px;font-size:13px;line-height:1.7}
-.auth-tip .ic{flex:none;width:18px;height:18px;color:var(--gold);margin-top:2px}
-.auth-tip b{color:var(--gold)}
-.auth-tip .sub{color:var(--t2);font-size:12.5px;margin-top:2px}
-
-/* ===== 发帖表单 ===== */
-.frow{padding:14px 20px;border-bottom:1px solid var(--line)}
-.frow:last-of-type{border-bottom:none}
-.frow label{display:block;font-size:11px;letter-spacing:1px;color:var(--t3);margin-bottom:8px;font-weight:600}
-.frow input,.frow textarea,.frow select{width:100%;background:var(--bg);border:1px solid var(--line);
-  color:var(--text);padding:11px 13px;border-radius:8px;transition:border-color .2s}
+.frow{padding:15px 20px;border-bottom:1px solid var(--line)}
+.frow:last-child{border-bottom:none}
+.frow label{display:block;font-size:11px;letter-spacing:1px;color:var(--t3);margin-bottom:7px;font-weight:600}
+.frow input[type=text],.frow textarea,.frow select{width:100%;background:var(--bg);border:1px solid var(--line);color:var(--text);padding:10px 12px;border-radius:4px}
 .frow input:focus,.frow textarea:focus,.frow select:focus{border-color:var(--gold)}
 .frow textarea{min-height:150px;resize:vertical;line-height:1.7}
-.frow select{appearance:none;-webkit-appearance:none;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%239c9ca6' stroke-width='2.5'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
-  background-repeat:no-repeat;background-position:right 13px center;padding-right:36px}
-.fact{padding:16px 20px;background:var(--bg3);display:flex;gap:10px;justify-content:flex-end;flex-wrap:wrap}
-.f-note{font-size:12px;color:var(--t3);margin-top:8px;line-height:1.7}
-.f-note b{color:var(--gold)}
+.fact{padding:14px 20px;background:var(--bg3);display:flex;gap:10px;justify-content:flex-end}
 
-/* ===== 空状态 / toast / 页脚 ===== */
-.empty{padding:44px 20px;text-align:center;color:var(--t3);font-size:13px;line-height:1.8}
-.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(20px);
-  background:var(--gold);color:var(--bg);padding:10px 24px;font-size:13px;font-weight:600;
-  border-radius:8px;opacity:0;transition:all .25s;z-index:999;pointer-events:none;max-width:88vw;text-align:center}
+.empty{padding:40px;text-align:center;color:var(--t3);font-size:13px}
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--gold);color:var(--bg);padding:9px 22px;font-size:13px;font-weight:600;border-radius:4px;opacity:0;transition:all .25s;z-index:999;pointer-events:none}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
-.foot{text-align:center;padding:26px 20px;font-size:11px;color:var(--t3);letter-spacing:2px;
-  margin-top:34px;border-top:1px solid var(--line)}
+.foot{text-align:center;padding:28px 20px;font-size:11px;color:var(--t3);letter-spacing:2px;margin-top:30px;border-top:1px solid var(--line)}
 .foot b{color:var(--gold)}
+
 @keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
-@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+@keyframes fadeDown{from{opacity:0;transform:translateY(-12px)}to{opacity:1;transform:translateY(0)}}
+
+@media(max-width:700px){
+  .nav{display:none}
+  .srow{grid-template-columns:42px 1fr}
+  .snum{display:none}
+  .prow{grid-template-columns:1fr 50px}
+  .pcnt{display:none}
+  .top-in{padding:0 12px}
+  .wrap{padding:0 12px}
+}
 </style>
 </head>
 <body>
+
 <header class="top">
   <div class="top-in">
     <a href="#/home" class="logo">XIP<em>GROUP</em></a>
     <nav class="nav">
       <a href="#/home" data-n="home">论坛首页</a>
       <a href="#/section/all" data-n="all">最新帖</a>
-      <a href="#/section/tech" data-n="tech">技术交流</a>
-      <a href="#/section/game" data-n="game">游戏专区</a>
     </nav>
     <div class="right">
-      <button class="btn btn-g" id="topLogin">登录 / 注册</button>
-      <button class="btn btn-s" id="topNew">发新帖</button>
+      <button class="btn btn-s" onclick="goNew()">发新帖</button>
     </div>
   </div>
 </header>
+
 <div id="app"></div>
-<footer class="foot"><b>XIP GROUP</b> &copy; 2026 · 自由讨论社区 · 发帖免费，评论需注册账号</footer>
+
+<footer class="foot"><b>XIP GROUP</b> &copy; 2026 · 自由讨论社区</footer>
 <div class="toast" id="toast"></div>
 
+<!-- Disqus 评论系统（全球最常用的免费评论，邮箱注册即可） -->
+
 <script>
-/* ====== 板块（与原论坛完全一致） ====== */
+// ====== 板块 ======
 const SECTORS=[
   {id:'announce',name:'站务公告',desc:'官方发布',icon:'公',color:'#c9a961'},
   {id:'chat',    name:'灌水闲聊',desc:'随便聊聊',icon:'水',color:'#10b981'},
   {id:'tech',    name:'技术交流',desc:'编程、DIY、数码',icon:'技',color:'#5b8def'},
   {id:'game',    name:'游戏专区',desc:'三角洲、L4D2 等',icon:'竞',color:'#a855f7'},
-  {id:'life',    name:'生活日常',desc:'美食、运动、身边事',icon:'活',color:'#f59e0b'},
-  {id:'feedback',name:'建议反馈',desc:'Bug、吐槽、建议',icon:'馈',color:'#ef4444'},
+  {id:'life',     name:'生活日常',desc:'美食、运动、身边事',icon:'活',color:'#f59e0b'},
+  {id:'feedback', name:'建议反馈',desc:'Bug、吐槽、建议',icon:'馈',color:'#ef4444'},
 ];
 
-/* ====== 帖子存储（保留原 localStorage key，帖子不丢） ====== */
+// ====== 帖子存在浏览器本地 ======
 const LS='xip_forum_posts_v2';
 function getPosts(){try{return JSON.parse(localStorage.getItem(LS))||[]}catch(e){return[]}}
 function savePosts(a){localStorage.setItem(LS,JSON.stringify(a))}
 function getSec(id){return SECTORS.find(s=>s.id===id)}
-function esc(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
-function ago(t){if(!t)return'';const d=Date.now()-t;
-  if(d<6e4)return'刚刚';if(d<36e5)return Math.floor(d/6e4)+' 分钟前';
-  if(d<864e5)return Math.floor(d/36e5)+' 小时前';return Math.floor(d/864e5)+' 天前'}
-function fullTime(t){if(!t)return'—';const d=new Date(t),p=n=>String(n).padStart(2,'0');
-  return d.getFullYear()+'-'+p(d.getMonth()+1)+'-'+p(d.getDate())+' '+p(d.getHours())+':'+p(d.getMinutes())}
-function toast(m){const t=document.getElementById('toast');t.textContent=m;t.classList.add('show');
-  clearTimeout(t._t);t._t=setTimeout(()=>t.classList.remove('show'),2400)}
+function esc(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
+function ago(t){if(!t)return'';const d=Date.now()-t;if(d<6e4)return'刚刚';if(d<36e5)return Math.floor(d/6e4)+'分钟前';if(d<864e5)return Math.floor(d/36e5)+'小时前';return Math.floor(d/864e5)+'天前'}
+function toast(m){const t=document.getElementById('toast');t.textContent=m;t.classList.add('show');clearTimeout(t._t);t._t=setTimeout(()=>t.classList.remove('show'),1800)}
 
-/* ====== Giscus 评论（保留原配置，评论历史不丢） ====== */
-function initGiscus(path){
-  const box=document.getElementById('giscus-box');
-  if(!box)return;
-  box.innerHTML='';
-  const s=document.createElement('script');
-  s.src='https://giscus.app/client.js';
-  s.setAttribute('data-repo','XIP5049/xip-forum');
-  s.setAttribute('data-repo-id','R_kgDOVcvYrQ');
-  s.setAttribute('data-category','General');
-  s.setAttribute('data-category-id','DIC_kwDOVcvYrc4DJ-1q');
-  s.setAttribute('data-mapping','pathname');
-  s.setAttribute('data-strict','0');
-  s.setAttribute('data-reactions-enabled','1');
-  s.setAttribute('data-emit-metadata','0');
-  s.setAttribute('data-input-position','bottom');
-  s.setAttribute('data-theme','dark');
-  s.setAttribute('data-lang','zh-CN');
-  s.crossOrigin='anonymous';
-  s.async=true;
+// ====== Giscus 评论配置（已配置好） ======
+function initGiscus(path) {
+  const box = document.getElementById('giscus-box');
+  if (!box) return;
+  box.innerHTML = '';
+  const s = document.createElement('script');
+  s.src = 'https://giscus.app/client.js';
+  s.setAttribute('data-repo', 'XIP5049/xip-forum');
+  s.setAttribute('data-repo-id', 'R_kgDOVcvYrQ');
+  s.setAttribute('data-category', 'General');
+  s.setAttribute('data-category-id', 'DIC_kwDOVcvYrc4DJ-1q');
+  s.setAttribute('data-mapping', 'pathname');
+  s.setAttribute('data-strict', '0');
+  s.setAttribute('data-reactions-enabled', '1');
+  s.setAttribute('data-emit-metadata', '0');
+  s.setAttribute('data-input-position', 'bottom');
+  s.setAttribute('data-theme', 'dark');
+  s.setAttribute('data-lang', 'zh-CN');
+  s.crossOrigin = 'anonymous';
+  s.async = true;
   box.appendChild(s);
 }
 
-/* ====== 搜索与排序状态 ====== */
-let query='';
-let sortMode='new';
-
-/* ====== 路由 ====== */
+// ====== 路由 ======
 function render(){
   const h=location.hash||'#/home';
   const app=document.getElementById('app');
   const p=h.slice(2).split('/');
   const v=p[0];
   document.querySelectorAll('.nav a').forEach(a=>a.classList.toggle('on',a.dataset.n===v));
+
   if(v==='home'||v==='')app.innerHTML=home();
   else if(v==='section')app.innerHTML=section(p[1]);
   else if(v==='post')app.innerHTML=post(parseInt(p[1]));
   else if(v==='new')app.innerHTML=form();
   else app.innerHTML=home();
+
   window.scrollTo(0,0);
   if(v==='post')initGiscus(p[1]);
 }
 
-/* ====== 视图：首页 ====== */
 function home(){
   const posts=getPosts();
-  const views=posts.reduce((a,p)=>a+(p.views||0),0);
   const secCells=SECTORS.map(s=>{
     const cnt=posts.filter(p=>p.sec===s.id).length;
     return`<div class="srow" onclick="location.hash='#/section/${s.id}'">
@@ -296,26 +213,28 @@ function home(){
       <div class="snum"><b>${cnt}</b>帖子</div>
     </div>`;
   }).join('');
-  const latest=posts.slice().sort((a,b)=>(b.t||0)-(a.t||0)).slice(0,8).map((p,i)=>postRow(p,i)).join('')
-    ||'<div class="empty">还没有帖子，点右上角「发新帖」开始</div>';
+
+  const latest=posts.slice().sort((a,b)=>(b.t||0)-(a.t||0)).slice(0,10).map((p,i)=>{
+    const s=getSec(p.sec);
+    return`<div class="prow" style="animation-delay:${i*0.04}s" onclick="location.hash='#/post/${p.id}'">
+      <div><div class="ptitle"><span class="ptag">${s?s.name:''}</span>${esc(p.title)}</div>
+      <div class="pmeta"><span class="author">${esc(p.author)}</span> · ${ago(p.t)}</div></div>
+      <div class="pcnt"><b>${p.views||0}</b>浏览</div>
+    </div>`;
+  }).join('')||'<div class="empty">还没有帖子，点右上角「发新帖」开始</div>';
+
   return`
   <section class="welcome">
     <div class="welcome-in">
       <h1>欢迎来到 <span>XIP 集团论坛</span></h1>
       <p>自由讨论 · 自由发帖 · 这里是你的社区</p>
-      <div class="wstats">
-        <div class="wstat"><b>${posts.length}</b><span>主题</span></div>
-        <div class="wstat"><b>${SECTORS.length}</b><span>板块</span></div>
-        <div class="wstat"><b>${views}</b><span>浏览</span></div>
-      </div>
     </div>
   </section>
   <div class="wrap">
     <div class="notice">
       <span class="notice-tag">公告</span>
       <h3>论坛已开放，欢迎自由发帖</h3>
-      <p><b>发帖无需注册</b>：选一个板块，点右上角「发新帖」，填昵称、标题、正文即可发布（帖子保存在本地浏览器）。<br>
-      <b>评论需注册账号</b>：评论区使用 Giscus，须注册并登录 <b>GitHub 账号</b>（免费）才能回复，登录一次所有设备同步。</p>
+      <p>选一个板块，点右上角「发新帖」，输入昵称、标题、正文就能发。评论区用 Giscus，用 GitHub 账号登录即可回复，所有设备同步。</p>
     </div>
     <div class="box">
       <div class="box-h"><h2>板块导航</h2></div>
@@ -328,62 +247,31 @@ function home(){
   </div>`;
 }
 
-/* ====== 帖子行（供列表复用） ====== */
-function postRow(p,i){
-  const s=getSec(p.sec);
-  return`<div class="prow" style="animation-delay:${(i%8)*0.04}s" onclick="location.hash='#/post/${p.id}'">
-    <div><div class="ptitle"><span class="ptag">${s?s.name:''}</span>${esc(p.title)}</div>
-    <div class="pmeta"><span class="author">${esc(p.author)}</span> · ${ago(p.t)}</div></div>
-    <div class="pcnt"><b>${p.views||0}</b>浏览</div>
-  </div>`;
-}
-
-/* ====== 视图：板块列表（含搜索 / 排序） ====== */
 function section(sid){
   let posts,name;
   if(sid==='all'){posts=getPosts();name='最新帖子'}
   else{const s=getSec(sid);if(!s)return home();name=s.name;posts=getPosts().filter(p=>p.sec===sid)}
-  const q=query.trim().toLowerCase();
-  if(q)posts=posts.filter(p=>(p.title||'').toLowerCase().includes(q)||(p.author||'').toLowerCase().includes(q));
-  posts.sort((a,b)=>sortMode==='hot'?(b.views||0)-(a.views||0):(b.t||0)-(a.t||0));
+  posts.sort((a,b)=>(b.t||0)-(a.t||0));
+  const list=posts.map((p,i)=>{
+    const s=getSec(p.sec);
+    return`<div class="prow" style="animation-delay:${i*0.04}s" onclick="location.hash='#/post/${p.id}'">
+      <div><div class="ptitle"><span class="ptag">${s?s.name:''}</span>${esc(p.title)}</div>
+      <div class="pmeta"><span class="author">${esc(p.author)}</span> · ${ago(p.t)}</div></div>
+      <div class="pcnt"><b>${p.views||0}</b>浏览</div>
+    </div>`;
+  }).join('')||'<div class="empty">这个板块还没有帖子</div>';
   return`<div class="wrap">
     <div class="crumb"><a href="#/home">首页</a><span>›</span>${name}</div>
     <div class="box">
-      <div class="toolbar">
-        <div class="search-box">
-          <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
-          <input id="qInput" placeholder="搜索标题或作者" value="${esc(query)}" oninput="onQuery(this.value)">
-        </div>
-        <div class="seg">
-          <button class="${sortMode==='new'?'on':''}" onclick="setSort('new')">最新</button>
-          <button class="${sortMode==='hot'?'on':''}" onclick="setSort('hot')">最热</button>
-        </div>
-      </div>
-      <div class="box-h" style="border-bottom:none"><h2>${name}</h2><span class="more">${posts.length} 主题</span></div>
-      <div id="postList">${listHtml(posts)}</div>
+      <div class="box-h"><h2>${name}</h2><span class="more">${posts.length} 主题</span></div>
+      ${list}
     </div></div>`;
 }
-function listHtml(posts){
-  if(posts.length===0)return'<div class="empty">'+(query.trim()?'没有匹配「'+esc(query.trim())+'」的帖子':'这个板块还没有帖子，点右上角「发新帖」开始')+'</div>';
-  return posts.map((p,i)=>postRow(p,i)).join('');
-}
-function onQuery(v){query=v;const el=document.getElementById('postList');if(el)el.innerHTML=listHtml(filteredPosts())}
-function setSort(m){sortMode=m;const el=document.getElementById('postList');if(el)el.innerHTML=listHtml(filteredPosts());
-  document.querySelectorAll('.seg button').forEach(b=>b.classList.toggle('on',b.textContent===(m==='hot'?'最热':'最新')))}
-function filteredPosts(){
-  const sid=(location.hash||'').split('/')[1];
-  let posts=sid==='all'?getPosts():getPosts().filter(p=>p.sec===sid);
-  const q=query.trim().toLowerCase();
-  if(q)posts=posts.filter(p=>(p.title||'').toLowerCase().includes(q)||(p.author||'').toLowerCase().includes(q));
-  posts.sort((a,b)=>sortMode==='hot'?(b.views||0)-(a.views||0):(b.t||0)-(a.t||0));
-  return posts;
-}
 
-/* ====== 视图：帖子详情 ====== */
 function post(pid){
   const posts=getPosts();
   const p=posts.find(x=>x.id===pid);
-  if(!p)return'<div class="wrap"><div class="empty">帖子不存在或已被删除</div></div>';
+  if(!p)return'<div class="wrap"><div class="empty">帖子不存在</div></div>';
   p.views=(p.views||0)+1;savePosts(posts);
   const s=getSec(p.sec);
   return`<div class="wrap">
@@ -393,38 +281,21 @@ function post(pid){
         <span class="thread-tag">${s.name}</span>
         <h1>${esc(p.title)}</h1>
         <div class="tmeta">
-          <span class="av">${esc((p.author||'X').charAt(0))}</span>
-          <span class="nm">${esc(p.author)}</span>
-          <span>${fullTime(p.t)}</span>
+          <span class="av">${esc(p.author[0]||'X')}</span>
+          <span>${esc(p.author)}</span>
+          <span>${ago(p.t)}</span>
           <span>${p.views} 次浏览</span>
         </div>
       </div>
       <div class="thread-b">${esc(p.content)}</div>
-      <div class="thread-ops">
-        <button class="op-btn" onclick="copyLink(${p.id})">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg>
-          复制链接
-        </button>
-      </div>
     </div>
     <div class="cbox">
-      <div class="cbox-h">
-        <h3>评论讨论区</h3>
-        <button class="login-btn" onclick="goRegister()">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><path d="M10 17l5-5-5-5"/><path d="M15 12H3"/></svg>
-          注册 / 登录账号
-        </button>
-      </div>
-      <div class="auth-tip">
-        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-        <div><b>评论需要注册账号</b>：点击上方「注册 / 登录账号」免费注册 GitHub 账号，回到本页评论区即可登录发言。<div class="sub">评论内容通过 GitHub 存储，登录一次后所有设备同步；发帖本身无需注册。</div></div>
-      </div>
+      <h3>评论讨论区</h3>
       <div id="giscus-box"></div>
     </div>
   </div>`;
 }
 
-/* ====== 视图：发帖 ====== */
 function form(){
   const opts=SECTORS.map(s=>`<option value="${s.id}">${s.name}</option>`).join('');
   return`<div class="wrap">
@@ -432,27 +303,18 @@ function form(){
     <div class="box">
       <div class="box-h"><h2>发新帖</h2></div>
       <div class="frow"><label>选择板块</label><select id="fSec">${opts}</select></div>
-      <div class="frow"><label>你的昵称</label><input type="text" id="fAuthor" maxlength="16" placeholder="怎么称呼你（可选）"></div>
+      <div class="frow"><label>你的昵称</label><input type="text" id="fAuthor" maxlength="16" placeholder="怎么称呼你"></div>
       <div class="frow"><label>标题</label><input type="text" id="fTitle" maxlength="80" placeholder="一句话说清楚"></div>
       <div class="frow"><label>正文</label><textarea id="fContent" placeholder="展开说说..."></textarea></div>
       <div class="fact">
-        <button class="btn btn-g" onclick="location.hash='#/home'">取消</button>
+        <button class="btn btn-g" onclick="history.back()">取消</button>
         <button class="btn btn-s" onclick="submit()">发布</button>
       </div>
-      <div class="f-note" style="padding:0 20px 16px"><b>提示</b>：发帖无需注册，帖子保存在本地浏览器；回复评论需注册 GitHub 账号。</div>
     </div>
   </div>`;
 }
 
-/* ====== 动作 ====== */
 function goNew(){location.hash='#/new'}
-function goRegister(){window.open('https://github.com/join?source=header-home','_blank','noopener')}
-function copyLink(pid){
-  const url=location.origin+location.pathname+'#/post/'+pid;
-  if(navigator.clipboard&&navigator.clipboard.writeText){
-    navigator.clipboard.writeText(url).then(()=>toast('链接已复制')).catch(()=>toast(url));
-  }else{toast(url)}
-}
 function submit(){
   const sec=document.getElementById('fSec').value;
   const author=document.getElementById('fAuthor').value.trim()||'匿名';
@@ -466,8 +328,7 @@ function submit(){
   toast('发布成功');
   location.hash='#/post/'+posts[0].id;
 }
-document.getElementById('topLogin').addEventListener('click',goRegister);
-document.getElementById('topNew').addEventListener('click',goNew);
+
 window.addEventListener('hashchange',render);
 render();
 </script>
