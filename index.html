@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>XIP GROUP 论坛</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%230a0a0a'/><text x='50' y='70' font-size='55' text-anchor='middle' fill='%23c9a961' font-family='sans-serif' font-weight='900'>X</text></svg>">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#0c0c0e;--bg2:#141417;--bg3:#1c1c21;
+  --line:#26262c;--line2:#383840;
+  --text:#e8e8ea;--t2:#9a9aa3;--t3:#66666f;
+  --gold:#c9a961;--gold2:#e0c084;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:"PingFang SC","Microsoft YaHei","Helvetica Neue",sans-serif;font-size:14px;line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none;transition:color .15s}
+button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
+input,textarea,select{font-family:inherit;font-size:14px;outline:none}
+
+.top{position:sticky;top:0;z-index:100;background:rgba(12,12,14,.94);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.top-in{max-width:1000px;margin:0 auto;padding:0 20px;height:54px;display:flex;align-items:center;gap:20px}
+.logo{font-size:15px;font-weight:900;letter-spacing:2px;color:var(--gold);white-space:nowrap}
+.logo em{font-style:normal;color:var(--t2);font-weight:300;margin-left:6px;font-size:10px;letter-spacing:3px}
+.nav{display:flex;gap:2px}
+.nav a{padding:6px 12px;font-size:12px;color:var(--t2);border-radius:4px;transition:all .15s}
+.nav a:hover{color:var(--text);background:var(--bg3)}
+.nav a.on{color:var(--gold);background:rgba(201,169,97,.1)}
+.right{margin-left:auto;display:flex;gap:8px;align-items:center}
+.btn{padding:7px 16px;font-size:12px;font-weight:600;letter-spacing:1px;border:1px solid var(--gold);color:var(--gold);border-radius:4px;transition:all .15s}
+.btn:hover{background:var(--gold);color:var(--bg)}
+.btn-s{background:var(--gold);color:var(--bg)}
+.btn-s:hover{background:var(--gold2)}
+.btn-g{border-color:var(--line2);color:var(--t2)}
+.btn-g:hover{border-color:var(--text);color:var(--text);background:transparent}
+
+.welcome{background:linear-gradient(135deg,rgba(201,169,97,.07),transparent 60%),var(--bg2);border-bottom:1px solid var(--line);padding:36px 20px;animation:fadeDown .5s ease}
+.welcome-in{max-width:1000px;margin:0 auto}
+.welcome h1{font-size:24px;font-weight:800;letter-spacing:1px}
+.welcome h1 span{color:var(--gold)}
+.welcome p{font-size:13px;color:var(--t2);margin-top:6px}
+
+.wrap{max-width:1000px;margin:20px auto;padding:0 20px}
+
+.notice{background:var(--bg2);border:1px solid var(--gold);border-radius:4px;padding:18px 22px;margin-bottom:20px;animation:fadeUp .4s ease}
+.notice-tag{display:inline-block;font-size:10px;padding:2px 8px;background:var(--gold);color:var(--bg);font-weight:700;letter-spacing:1px;margin-bottom:8px;border-radius:2px}
+.notice h3{font-size:15px;margin-bottom:6px}
+.notice p{font-size:13px;color:var(--t2);line-height:1.8}
+
+.box{background:var(--bg2);border:1px solid var(--line);border-radius:4px;margin-bottom:16px;overflow:hidden;animation:fadeUp .4s ease both}
+.box:nth-child(2){animation-delay:.05s}
+.box-h{padding:11px 18px;background:var(--bg3);border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between}
+.box-h h2{font-size:13px;font-weight:700;letter-spacing:2px}
+.box-h h2::before{content:"";display:inline-block;width:3px;height:13px;background:var(--gold);margin-right:8px;vertical-align:-2px}
+.box-h .more{font-size:11px;color:var(--t3)}
+
+.srow{display:grid;grid-template-columns:48px 1fr 80px 80px;padding:13px 18px;border-bottom:1px solid var(--line);align-items:center;gap:14px;cursor:pointer;transition:background .15s}
+.srow:last-child{border-bottom:none}
+.srow:hover{background:var(--bg3)}
+.srow:hover .sname{color:var(--gold);transform:translateX(3px)}
+.sicon{width:42px;height:42px;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:800;color:var(--bg)}
+.sname{font-size:14px;font-weight:600;transition:all .15s}
+.sdesc{font-size:11px;color:var(--t3);margin-top:2px}
+.snum{text-align:center;font-size:11px;color:var(--t3)}
+.snum b{display:block;font-size:15px;color:var(--text);font-weight:700}
+
+.prow{display:grid;grid-template-columns:1fr 70px;padding:12px 18px;border-bottom:1px solid var(--line);align-items:center;gap:12px;cursor:pointer;transition:background .12s;animation:fadeUp .3s ease both}
+.prow:last-child{border-bottom:none}
+.prow:hover{background:var(--bg3)}
+.prow:hover .ptitle{color:var(--gold)}
+.ptitle{font-size:14px;font-weight:500;transition:color .12s;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ptag{display:inline-block;font-size:10px;padding:1px 6px;margin-right:6px;border:1px solid var(--line2);color:var(--t2);border-radius:2px}
+.pmeta{font-size:11px;color:var(--t3);margin-top:3px}
+.pmeta .author{color:var(--t2)}
+.pcnt{text-align:center;font-size:11px;color:var(--t3)}
+.pcnt b{display:block;font-size:15px;color:var(--text)}
+
+.crumb{font-size:12px;color:var(--t3);margin-bottom:14px}
+.crumb a:hover{color:var(--gold)}
+.crumb span{margin:0 6px}
+.thread{background:var(--bg2);border:1px solid var(--line);border-radius:4px;overflow:hidden;margin-bottom:14px;animation:fadeUp .4s ease}
+.thread-h{padding:20px 24px;border-bottom:1px solid var(--line);background:var(--bg3)}
+.thread-tag{display:inline-block;font-size:10px;padding:2px 8px;border:1px solid var(--gold);color:var(--gold);border-radius:2px;letter-spacing:1px;margin-bottom:10px}
+.thread-h h1{font-size:19px;font-weight:700;line-height:1.4}
+.tmeta{margin-top:10px;font-size:11px;color:var(--t3);display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.av{width:24px;height:24px;border-radius:50%;background:var(--gold);color:var(--bg);display:inline-flex;align-items:center;justify-content:center;font-size:11px;font-weight:700}
+.thread-b{padding:22px 24px;font-size:14px;line-height:1.9;white-space:pre-wrap;word-break:break-word}
+
+.cbox{background:var(--bg2);border:1px solid var(--line);border-radius:4px;padding:20px 24px;animation:fadeUp .4s ease .1s both}
+.cbox h3{font-size:13px;font-weight:700;letter-spacing:2px;padding-bottom:12px;border-bottom:1px solid var(--line);margin-bottom:14px}
+.cbox h3::before{content:"";display:inline-block;width:3px;height:12px;background:var(--gold);margin-right:8px;vertical-align:-2px}
+
+.frow{padding:15px 20px;border-bottom:1px solid var(--line)}
+.frow:last-child{border-bottom:none}
+.frow label{display:block;font-size:11px;letter-spacing:1px;color:var(--t3);margin-bottom:7px;font-weight:600}
+.frow input[type=text],.frow textarea,.frow select{width:100%;background:var(--bg);border:1px solid var(--line);color:var(--text);padding:10px 12px;border-radius:4px}
+.frow input:focus,.frow textarea:focus,.frow select:focus{border-color:var(--gold)}
+.frow textarea{min-height:150px;resize:vertical;line-height:1.7}
+.fact{padding:14px 20px;background:var(--bg3);display:flex;gap:10px;justify-content:flex-end}
+
+.empty{padding:40px;text-align:center;color:var(--t3);font-size:13px}
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--gold);color:var(--bg);padding:9px 22px;font-size:13px;font-weight:600;border-radius:4px;opacity:0;transition:all .25s;z-index:999;pointer-events:none}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.foot{text-align:center;padding:28px 20px;font-size:11px;color:var(--t3);letter-spacing:2px;margin-top:30px;border-top:1px solid var(--line)}
+.foot b{color:var(--gold)}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeDown{from{opacity:0;transform:translateY(-12px)}to{opacity:1;transform:translateY(0)}}
+
+@media(max-width:700px){
+  .nav{display:none}
+  .srow{grid-template-columns:42px 1fr}
+  .snum{display:none}
+  .prow{grid-template-columns:1fr 50px}
+  .pcnt{display:none}
+  .top-in{padding:0 12px}
+  .wrap{padding:0 12px}
+}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="top-in">
+    <a href="#/home" class="logo">XIP<em>GROUP</em></a>
+    <nav class="nav">
+      <a href="#/home" data-n="home">论坛首页</a>
+      <a href="#/section/all" data-n="all">最新帖</a>
+    </nav>
+    <div class="right">
+      <button class="btn btn-s" onclick="goNew()">发新帖</button>
+    </div>
+  </div>
+</header>
+
+<div id="app"></div>
+
+<footer class="foot"><b>XIP GROUP</b> &copy; 2026 · 自由讨论社区</footer>
+<div class="toast" id="toast"></div>
+
+<!-- Disqus 评论系统（全球最常用的免费评论，邮箱注册即可） -->
+
+<script>
+// ====== 板块 ======
+const SECTORS=[
+  {id:'announce',name:'站务公告',desc:'官方发布',icon:'公',color:'#c9a961'},
+  {id:'chat',    name:'灌水闲聊',desc:'随便聊聊',icon:'水',color:'#10b981'},
+  {id:'tech',    name:'技术交流',desc:'编程、DIY、数码',icon:'技',color:'#5b8def'},
+  {id:'game',    name:'游戏专区',desc:'三角洲、L4D2 等',icon:'竞',color:'#a855f7'},
+  {id:'life',     name:'生活日常',desc:'美食、运动、身边事',icon:'活',color:'#f59e0b'},
+  {id:'feedback', name:'建议反馈',desc:'Bug、吐槽、建议',icon:'馈',color:'#ef4444'},
+];
+
+// ====== 帖子存在浏览器本地 ======
+const LS='xip_forum_posts_v2';
+function getPosts(){try{return JSON.parse(localStorage.getItem(LS))||[]}catch(e){return[]}}
+function savePosts(a){localStorage.setItem(LS,JSON.stringify(a))}
+function getSec(id){return SECTORS.find(s=>s.id===id)}
+function esc(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
+function ago(t){if(!t)return'';const d=Date.now()-t;if(d<6e4)return'刚刚';if(d<36e5)return Math.floor(d/6e4)+'分钟前';if(d<864e5)return Math.floor(d/36e5)+'小时前';return Math.floor(d/864e5)+'天前'}
+function toast(m){const t=document.getElementById('toast');t.textContent=m;t.classList.add('show');clearTimeout(t._t);t._t=setTimeout(()=>t.classList.remove('show'),1800)}
+
+// ====== Giscus 评论配置（已配置好） ======
+function initGiscus(path) {
+  const box = document.getElementById('giscus-box');
+  if (!box) return;
+  box.innerHTML = '';
+  const s = document.createElement('script');
+  s.src = 'https://giscus.app/client.js';
+  s.setAttribute('data-repo', 'XIP5049/xip-forum');
+  s.setAttribute('data-repo-id', 'R_kgDOVcvYrQ');
+  s.setAttribute('data-category', 'General');
+  s.setAttribute('data-category-id', 'DIC_kwDOVcvYrc4DJ-1q');
+  s.setAttribute('data-mapping', 'pathname');
+  s.setAttribute('data-strict', '0');
+  s.setAttribute('data-reactions-enabled', '1');
+  s.setAttribute('data-emit-metadata', '0');
+  s.setAttribute('data-input-position', 'bottom');
+  s.setAttribute('data-theme', 'dark');
+  s.setAttribute('data-lang', 'zh-CN');
+  s.crossOrigin = 'anonymous';
+  s.async = true;
+  box.appendChild(s);
+}
+
+// ====== 路由 ======
+function render(){
+  const h=location.hash||'#/home';
+  const app=document.getElementById('app');
+  const p=h.slice(2).split('/');
+  const v=p[0];
+  document.querySelectorAll('.nav a').forEach(a=>a.classList.toggle('on',a.dataset.n===v));
+
+  if(v==='home'||v==='')app.innerHTML=home();
+  else if(v==='section')app.innerHTML=section(p[1]);
+  else if(v==='post')app.innerHTML=post(parseInt(p[1]));
+  else if(v==='new')app.innerHTML=form();
+  else app.innerHTML=home();
+
+  window.scrollTo(0,0);
+  if(v==='post')initGiscus(p[1]);
+}
+
+function home(){
+  const posts=getPosts();
+  const secCells=SECTORS.map(s=>{
+    const cnt=posts.filter(p=>p.sec===s.id).length;
+    return`<div class="srow" onclick="location.hash='#/section/${s.id}'">
+      <div class="sicon" style="background:${s.color}">${s.icon}</div>
+      <div><div class="sname">${s.name}</div><div class="sdesc">${s.desc}</div></div>
+      <div class="snum"><b>${cnt}</b>主题</div>
+      <div class="snum"><b>${cnt}</b>帖子</div>
+    </div>`;
+  }).join('');
+
+  const latest=posts.slice().sort((a,b)=>(b.t||0)-(a.t||0)).slice(0,10).map((p,i)=>{
+    const s=getSec(p.sec);
+    return`<div class="prow" style="animation-delay:${i*0.04}s" onclick="location.hash='#/post/${p.id}'">
+      <div><div class="ptitle"><span class="ptag">${s?s.name:''}</span>${esc(p.title)}</div>
+      <div class="pmeta"><span class="author">${esc(p.author)}</span> · ${ago(p.t)}</div></div>
+      <div class="pcnt"><b>${p.views||0}</b>浏览</div>
+    </div>`;
+  }).join('')||'<div class="empty">还没有帖子，点右上角「发新帖」开始</div>';
+
+  return`
+  <section class="welcome">
+    <div class="welcome-in">
+      <h1>欢迎来到 <span>XIP 集团论坛</span></h1>
+      <p>自由讨论 · 自由发帖 · 这里是你的社区</p>
+    </div>
+  </section>
+  <div class="wrap">
+    <div class="notice">
+      <span class="notice-tag">公告</span>
+      <h3>论坛已开放，欢迎自由发帖</h3>
+      <p>选一个板块，点右上角「发新帖」，输入昵称、标题、正文就能发。评论区用 Giscus，用 GitHub 账号登录即可回复，所有设备同步。</p>
+    </div>
+    <div class="box">
+      <div class="box-h"><h2>板块导航</h2></div>
+      ${secCells}
+    </div>
+    <div class="box">
+      <div class="box-h"><h2>最新帖子</h2><a href="#/section/all" class="more">更多 →</a></div>
+      ${latest}
+    </div>
+  </div>`;
+}
+
+function section(sid){
+  let posts,name;
+  if(sid==='all'){posts=getPosts();name='最新帖子'}
+  else{const s=getSec(sid);if(!s)return home();name=s.name;posts=getPosts().filter(p=>p.sec===sid)}
+  posts.sort((a,b)=>(b.t||0)-(a.t||0));
+  const list=posts.map((p,i)=>{
+    const s=getSec(p.sec);
+    return`<div class="prow" style="animation-delay:${i*0.04}s" onclick="location.hash='#/post/${p.id}'">
+      <div><div class="ptitle"><span class="ptag">${s?s.name:''}</span>${esc(p.title)}</div>
+      <div class="pmeta"><span class="author">${esc(p.author)}</span> · ${ago(p.t)}</div></div>
+      <div class="pcnt"><b>${p.views||0}</b>浏览</div>
+    </div>`;
+  }).join('')||'<div class="empty">这个板块还没有帖子</div>';
+  return`<div class="wrap">
+    <div class="crumb"><a href="#/home">首页</a><span>›</span>${name}</div>
+    <div class="box">
+      <div class="box-h"><h2>${name}</h2><span class="more">${posts.length} 主题</span></div>
+      ${list}
+    </div></div>`;
+}
+
+function post(pid){
+  const posts=getPosts();
+  const p=posts.find(x=>x.id===pid);
+  if(!p)return'<div class="wrap"><div class="empty">帖子不存在</div></div>';
+  p.views=(p.views||0)+1;savePosts(posts);
+  const s=getSec(p.sec);
+  return`<div class="wrap">
+    <div class="crumb"><a href="#/home">首页</a><span>›</span><a href="#/section/${s.id}">${s.name}</a><span>›</span>正文</div>
+    <div class="thread">
+      <div class="thread-h">
+        <span class="thread-tag">${s.name}</span>
+        <h1>${esc(p.title)}</h1>
+        <div class="tmeta">
+          <span class="av">${esc(p.author[0]||'X')}</span>
+          <span>${esc(p.author)}</span>
+          <span>${ago(p.t)}</span>
+          <span>${p.views} 次浏览</span>
+        </div>
+      </div>
+      <div class="thread-b">${esc(p.content)}</div>
+    </div>
+    <div class="cbox">
+      <h3>评论讨论区</h3>
+      <div id="giscus-box"></div>
+    </div>
+  </div>`;
+}
+
+function form(){
+  const opts=SECTORS.map(s=>`<option value="${s.id}">${s.name}</option>`).join('');
+  return`<div class="wrap">
+    <div class="crumb"><a href="#/home">首页</a><span>›</span>发新帖</div>
+    <div class="box">
+      <div class="box-h"><h2>发新帖</h2></div>
+      <div class="frow"><label>选择板块</label><select id="fSec">${opts}</select></div>
+      <div class="frow"><label>你的昵称</label><input type="text" id="fAuthor" maxlength="16" placeholder="怎么称呼你"></div>
+      <div class="frow"><label>标题</label><input type="text" id="fTitle" maxlength="80" placeholder="一句话说清楚"></div>
+      <div class="frow"><label>正文</label><textarea id="fContent" placeholder="展开说说..."></textarea></div>
+      <div class="fact">
+        <button class="btn btn-g" onclick="history.back()">取消</button>
+        <button class="btn btn-s" onclick="submit()">发布</button>
+      </div>
+    </div>
+  </div>`;
+}
+
+function goNew(){location.hash='#/new'}
+function submit(){
+  const sec=document.getElementById('fSec').value;
+  const author=document.getElementById('fAuthor').value.trim()||'匿名';
+  const title=document.getElementById('fTitle').value.trim();
+  const content=document.getElementById('fContent').value.trim();
+  if(!title)return toast('请输入标题');
+  if(!content)return toast('请输入正文');
+  const posts=getPosts();
+  posts.unshift({id:Date.now(),sec,author,title,content,t:Date.now(),views:0});
+  savePosts(posts);
+  toast('发布成功');
+  location.hash='#/post/'+posts[0].id;
+}
+
+window.addEventListener('hashchange',render);
+render();
+</script>
+</body>
+</html>
